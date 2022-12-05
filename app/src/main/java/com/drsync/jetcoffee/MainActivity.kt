@@ -21,10 +21,7 @@ import com.drsync.jetcoffee.model.Menu
 import com.drsync.jetcoffee.model.dummyBestSellerMenu
 import com.drsync.jetcoffee.model.dummyCategory
 import com.drsync.jetcoffee.model.dummyMenu
-import com.drsync.jetcoffee.ui.components.CategoryItem
-import com.drsync.jetcoffee.ui.components.MenuItem
-import com.drsync.jetcoffee.ui.components.SearchBar
-import com.drsync.jetcoffee.ui.components.SectionText
+import com.drsync.jetcoffee.ui.components.*
 import com.drsync.jetcoffee.ui.theme.JetCoffeeTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,12 +39,18 @@ class MainActivity : ComponentActivity() {
 fun JetCoffeeApp() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Banner()
-        SectionText(title = stringResource(id = R.string.section_category))
-        CategoryRow()
-        SectionText(title = stringResource(id = R.string.section_favorite_menu))
-        MenuRow(listMenu = dummyMenu)
-        SectionText(title = stringResource(id = R.string.section_best_seller_menu))
-        MenuRow(listMenu = dummyBestSellerMenu)
+        HomeSection(
+            title = stringResource(id = R.string.section_category),
+            content = { CategoryRow() }
+        )
+        HomeSection(
+            title = stringResource(id = R.string.section_favorite_menu),
+            content = { MenuRow(listMenu = dummyMenu) }
+        )
+        HomeSection(
+            title = stringResource(id = R.string.section_best_seller_menu),
+            content = { MenuRow(listMenu = dummyBestSellerMenu) }
+        )
     }
 }
 
